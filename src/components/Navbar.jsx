@@ -1,17 +1,31 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown, Search, Menu, X, Globe, Sun, Moon, Languages } from "lucide-react";
-import SearchModal from "./SearchModel";
+import { ChevronDown, Search, Menu, X, Languages, Sun, Moon } from "lucide-react";
+import SearchModal from "./SearchModel"; // Ensure this matches your filename
+// 1. Import the hook
+import { useLanguage } from "../contexts/LanguageContext"; 
 
 const Header = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
-  // New states for the UI demo
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Close language dropdown if clicking outside
+  // 2. Get data and functions from Context
+  const { t, language, changeLanguage } = useLanguage(); 
+
   const langMenuRef = useRef(null);
+
+  // 3. Define language options with codes matching your Context Dictionary
+  const languagesList = [
+    { code: "en", label: "English", short: "En" },
+    { code: "es", label: "Español", short: "Es" },
+    { code: "fr", label: "Français", short: "Fr" },
+    { code: "de", label: "Deutsch", short: "De" }
+  ];
+
+  // Helper to get current short label (e.g. "En")
+  const currentLangLabel = languagesList.find(l => l.code === language)?.short || "En";
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (langMenuRef.current && !langMenuRef.current.contains(event.target)) {
@@ -22,25 +36,13 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const t = {
-    nav: {
-      tools: "Tools",
-      categories: "Categories",
-      resources: "Resources",
-      about: "About",
-      searchTools: "Search tools...",
-      getStarted: "Get Started"
-    }
-  };
-
+  // 4. Update navItems to use dynamic 't' from context
   const navItems = [
     { label: t.nav.tools, hasDropdown: true, options: ["PDF Tools", "Image Tools", "Text Tools"] },
     { label: t.nav.categories, hasDropdown: true, options: ["Productivity", "Design", "Development"] },
     { label: t.nav.resources, hasDropdown: true, options: ["Documentation", "Blog", "Support"] },
     { label: t.nav.about, hasDropdown: false },
   ];
-
-  const languages = ["English", "Español", "Français", "Deutsch"];
 
   return (
     <>
@@ -106,19 +108,25 @@ const Header = () => {
                 className="flex border h-9 text-[#9BA2AE] py-1 px-2 items-center justify-center rounded-md text-foreground/80 hover:bg-muted hover:text-foreground"
                 aria-label="Select Language"
               >
-                <Languages className='h-4 w-4' />&nbsp;En
+                {/* 5. Show current language short code */}
+                <Languages className='h-4 w-4' />&nbsp;{currentLangLabel}
               </button>
               
               {/* Language Dropdown */}
               {isLangMenuOpen && (
                 <div className="absolute bg-white right-0 top-full mt-2 w-32 rounded-md border border-border bg-background p-1 shadow-lg">
-                  {languages.map((lang) => (
+                  {languagesList.map((langItem) => (
                     <button
-                      key={lang}
-                      onClick={() => setIsLangMenuOpen(false)}
-                      className="block w-full rounded-sm px-3 py-2 text-left text-sm text-foreground/80 hover:bg-muted hover:text-foreground"
+                      key={langItem.code}
+                      onClick={() => {
+                        changeLanguage(langItem.code); // 6. Trigger switch
+                        setIsLangMenuOpen(false);
+                      }}
+                      className={`block w-full rounded-sm px-3 py-2 text-left text-sm hover:bg-muted hover:text-foreground ${
+                        language === langItem.code ? "text-[#2563EB] font-bold" : "text-foreground/80"
+                      }`}
                     >
-                      {lang}
+                      {langItem.label}
                     </button>
                   ))}
                 </div>

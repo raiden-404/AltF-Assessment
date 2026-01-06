@@ -1,15 +1,27 @@
-import { Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, X } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
+// 1. Import hook
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Footer = () => {
+  // 2. Get translation object
+  const { t } = useLanguage();
+
+  // 3. Map categories to context translations
   const categories = [
-    "Productivity",
-    "Development",
-    "Design",
-    "Utilities",
-    "Trackers",
+    t.categories.items.prod,   // Productivity
+    t.categories.items.dev,    // Development
+    t.categories.items.design, // Design
+    t.categories.items.util,   // Utilities
+    t.categories.items.track,  // Trackers
   ];
 
-  const company = ["Home", "About Us", "Contact Us", "All Tools"];
+  // 4. Map company links to context translations
+  const company = [
+    t.footer.links.home,    // Home
+    t.footer.links.about,   // About Us
+    t.footer.links.contact, // Contact Us (Link)
+    t.footer.links.all      // All Tools
+  ];
 
   const contacts = {
     email: "we@anslation.com",
@@ -18,15 +30,15 @@ const Footer = () => {
   };
 
   const XLogo = ({ className }) => (
-  <svg 
-    viewBox="0 0 24 24" 
-    aria-hidden="true" 
-    className={className}
-    fill="currentColor"
-  >
-    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
-  </svg>
-);
+    <svg 
+      viewBox="0 0 24 24" 
+      aria-hidden="true" 
+      className={className}
+      fill="currentColor"
+    >
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+    </svg>
+  );
 
   const socialLinks = [
     { icon: Facebook, href: "#" },
@@ -47,8 +59,8 @@ const Footer = () => {
               <span className="text-2xl font-bold text-white">Alt F</span>
             </a>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-zinc-400">
-              A comprehensive collection of micro tools designed to make your
-              workflow easier and more efficient.
+              {/* 5. Dynamic Description */}
+              {t.footer.desc}
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (
@@ -56,7 +68,7 @@ const Footer = () => {
                   key={index}
                   href={social.href}
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-zinc-400 transition-all duration-300 hover:bg-primary hover:text-white hover:-translate-y-1"
-                  aria-label={`Visit our ${social.icon.displayName}`}
+                  aria-label={`Visit our social page`}
                 >
                   <social.icon className="h-4 w-4" />
                 </a>
@@ -67,7 +79,8 @@ const Footer = () => {
           {/* Categories */}
           <div>
             <h4 className="mb-6 text-sm font-semibold uppercase tracking-wider text-white">
-              Categories
+              {/* 6. Dynamic Header */}
+              {t.footer.cats}
             </h4>
             <ul className="space-y-3">
               {categories.map((item) => (
@@ -86,7 +99,8 @@ const Footer = () => {
           {/* Company */}
           <div>
             <h4 className="mb-6 text-sm font-semibold uppercase tracking-wider text-white">
-              Company
+              {/* 7. Dynamic Header */}
+              {t.footer.comp}
             </h4>
             <ul className="space-y-3">
               {company.map((item) => (
@@ -105,16 +119,20 @@ const Footer = () => {
           {/* Contacts */}
           <div>
             <h4 className="mb-6 text-sm font-semibold uppercase tracking-wider text-white">
-              Contact Us
+              {/* 8. Dynamic Header */}
+              {t.footer.contactTitle}
             </h4>
             <ul className="space-y-4 text-sm text-zinc-400">
               <li className="flex items-start gap-3">
+                <Mail className="h-5 w-5 shrink-0 text-primary" />
                 <span>{contacts.email}</span>
               </li>
               <li className="flex items-start gap-3">
+                <Phone className="h-5 w-5 shrink-0 text-primary" />
                 <span>{contacts.phone}</span>
               </li>
               <li className="flex items-start gap-3">
+                <MapPin className="h-5 w-5 shrink-0 text-primary" />
                 <span>{contacts.location}</span>
               </li>
             </ul>
@@ -125,14 +143,17 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-zinc-900 bg-zinc-950">
         <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 text-sm text-zinc-500 md:flex-row lg:px-8">
-          <p>Copyright © 2025 MicroToolHub. All Rights Reserved</p>
+          {/* 9. Dynamic Rights */}
+          <p>{t.footer.rights}</p>
           <div className="flex gap-6">
             <a href="#" className="transition-colors hover:text-white">
-              Terms and Conditions
+              {/* 10. Dynamic Terms */}
+              {t.footer.terms}
             </a>
             <span className="text-zinc-700">|</span>
             <a href="#" className="transition-colors hover:text-white">
-              Privacy Policy
+              {/* 11. Dynamic Privacy */}
+              {t.footer.privacy}
             </a>
           </div>
         </div>

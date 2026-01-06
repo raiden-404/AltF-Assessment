@@ -1,36 +1,42 @@
 import { ArrowUpRight } from "lucide-react";
+// 1. Import hook
+import { useLanguage } from "../contexts/LanguageContext";
 
 const CategoriesSection = () => {
+  // 2. Get translation object
+  const { t } = useLanguage();
+
+  // 3. Construct categories using dynamic names from 't'
   const categories = [
     { 
       id: 1, 
-      name: "Productivity", 
+      name: t.categories.items.prod, // "Productivity"
       image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400&q=80",
-      count: "12 Tools"
+      count: "12"
     },
     { 
       id: 2, 
-      name: "Development", 
+      name: t.categories.items.dev, // "Development"
       image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&q=80",
-      count: "8 Tools"
+      count: "8"
     },
     { 
       id: 3, 
-      name: "Design", 
+      name: t.categories.items.design, // "Design"
       image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&q=80",
-      count: "15 Tools"
+      count: "15"
     },
     { 
       id: 4, 
-      name: "Math", 
+      name: t.categories.items.math, // "Math"
       image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80",
-      count: "6 Tools"
+      count: "6"
     },
     { 
       id: 5, 
-      name: "Security", 
+      name: t.categories.items.security, // "Security"
       image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=400&q=80",
-      count: "4 Tools"
+      count: "4"
     },
   ];
 
@@ -46,13 +52,16 @@ const CategoriesSection = () => {
             {/* Left Content (Text) */}
             <div className="relative z-10">
               <span className="mb-4 inline-block rounded-lg bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
-                Categories
+                {/* 4. Dynamic Badge */}
+                {t.categories.badge}
               </span>
               <h2 className="mb-4 text-3xl font-bold text-white lg:text-4xl">
-                Built for Every Type of User
+                {/* 5. Dynamic Title */}
+                {t.categories.title}
               </h2>
               <p className="max-w-md text-zinc-400">
-                Flexible tools designed to fit every workflow.
+                {/* 6. Dynamic Subtitle */}
+                {t.categories.subtitle}
               </p>
             </div>
 
@@ -69,9 +78,7 @@ const CategoriesSection = () => {
           </div>
 
           {/* Bottom Section: Scrollable Reduced Cards */}
-          {/* Aligned to bottom left via margin-top and standard flow */}
           <div className="mt-10 w-full lg:max-w-3xl">
-            
             
             {/* Horizontal Scroll Container */}
             <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none]">
@@ -96,7 +103,8 @@ const CategoriesSection = () => {
                       {category.name}
                     </h3>
                     <div className="mt-1 flex items-center justify-between">
-                      <p className="text-[10px] text-zinc-500">{category.count}</p>
+                      {/* 7. Dynamic "Tools" label appended to count */}
+                      <p className="text-[10px] text-zinc-500">{category.count} {t.nav.tools}</p>
                       <ArrowUpRight className="h-3 w-3 text-zinc-600 group-hover:text-primary transition-colors" />
                     </div>
                   </div>

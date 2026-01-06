@@ -1,19 +1,16 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 import SearchModal from "./SearchModel";
+// 1. Import hook
+import { useLanguage } from "../contexts/LanguageContext";
 
 const BuildSection = () => {
   const [searchOpen, setSearchOpen] = useState(false);
+  
+  // 2. Get translation object from Context
+  const { t } = useLanguage();
 
-  // Mock translation object
-  const t = {
-    build: {
-      title: "What Do You Want to Build Today?",
-      subtitle: "Over 100+ tools ready to use instantly",
-      searchPlaceholder: "Search tools..."
-    }
-  };
-
+  // Images and Tool Data (Static content, fine to keep here)
   const topRowTools = [
     { id: 1, name: "PDF Converter", image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&q=80" },
     { id: 2, name: "Age Calculator", image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80" },
@@ -79,9 +76,11 @@ const BuildSection = () => {
           {/* Header */}
           <div className="mx-auto mb-12 max-w-2xl text-center">
             <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">
+              {/* 3. Use Dynamic Title */}
               {t.build.title}
             </h2>
             <p className="mb-8 text-[#9DA3AF] text-xl text-muted-foreground">
+              {/* 4. Use Dynamic Subtitle */}
               {t.build.subtitle}
             </p>
 
@@ -90,6 +89,7 @@ const BuildSection = () => {
               <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
+                // 5. Use Dynamic Placeholder
                 placeholder={t.build.searchPlaceholder}
                 onClick={() => setSearchOpen(true)}
                 readOnly
