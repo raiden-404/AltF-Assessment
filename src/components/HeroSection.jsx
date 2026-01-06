@@ -1,10 +1,12 @@
 import { PencilRuler, LockKeyhole, CircleOff, DatabaseZap } from "lucide-react";
 // 1. Import the hook
 import { useLanguage } from "../contexts/LanguageContext";
+import { useTheme } from "../contexts/ThemeContext";
 
 const HeroSection = () => {
   // 2. Get the translation object
   const { t } = useLanguage();
+  const { theme } = useTheme();
 
   const features = [
     {
@@ -85,7 +87,7 @@ const HeroSection = () => {
             return (
               <div
                 key={index} // Using index is safer here as title changes with language
-                className="flex items-center gap-4 rounded-xl bg-[#F8F9FA] p-3"
+                className={`flex items-center gap-4 rounded-xl ${theme === "dark" ? "text-white" : ""} ${theme === "dark" ? "bg-gray-700" : "bg-[#F8F9FA]"} p-3`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Grid Place Items (Technical Fix) */}

@@ -3,12 +3,16 @@ import { Search } from "lucide-react";
 import SearchModal from "./SearchModel";
 // 1. Import hook
 import { useLanguage } from "../contexts/LanguageContext";
+import { useTheme } from "../contexts/ThemeContext";
+
 
 const BuildSection = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   
   // 2. Get translation object from Context
   const { t } = useLanguage();
+  const { theme } = useTheme();
+
 
   // Images and Tool Data (Static content, fine to keep here)
   const topRowTools = [
@@ -75,7 +79,7 @@ const BuildSection = () => {
         <div className="container mx-auto px-4 lg:px-8">
           {/* Header */}
           <div className="mx-auto mb-12 max-w-2xl text-center">
-            <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">
+            <h2 className={`${theme === "dark" ? "text-white" : ""} mb-4 text-3xl font-bold text-foreground lg:text-4xl`}>
               {/* 3. Use Dynamic Title */}
               {t.build.title}
             </h2>
