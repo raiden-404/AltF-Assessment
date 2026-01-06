@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { Search, Clock, TrendingUp, X } from "lucide-react";
-
-// Removed TypeScript interface
-// Removed external imports for Dialog and LanguageContext
+import { useTheme } from "../contexts/ThemeContext";
 
 const SearchModal = ({ open, onOpenChange }) => {
   const [filter, setFilter] = useState("Free");
+  const { theme } = useTheme();
 
   // Mocked translation object to replace useLanguage hook
   const t = {
@@ -58,12 +57,12 @@ const SearchModal = ({ open, onOpenChange }) => {
       
       {/* Backdrop (Click to close) */}
       <div 
-        className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" 
+        className={`fixed inset-0 ${theme === "dark" ? "bg-white/40" : "bg-black/80"} backdrop-blur-sm transition-opacity`}
         onClick={() => onOpenChange(false)}
       />
 
       {/* Modal Content */}
-      <div className="relative bg-white z-50 w-full max-w-2xl transform rounded-xl border border-border bg-background shadow-2xl transition-all mx-4">
+      <div className={` ${theme === "dark" ? "bg-black text-white" : "bg-white"} relative z-50 w-full max-w-2xl transform rounded-xl border border-border bg-background shadow-2xl transition-all mx-4`}>
         
         {/* Hidden Title for Accessibility */}
         <h2 className="sr-only">Search Tools</h2>
@@ -82,7 +81,7 @@ const SearchModal = ({ open, onOpenChange }) => {
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="cursor-pointer rounded-md border-0 bg-transparent px-2 py-1 text-sm text-foreground outline-none hover:bg-muted"
+              className={`${theme === "dark" ? "bg-black" : "bg-white"} p-2 rounded-lg cursor-pointer border-0 px-2 py-1 text-sm text-foreground outline-none hover:bg-muted`}
             >
               <option value="Free">Free</option>
               <option value="Premium">Premium</option>
