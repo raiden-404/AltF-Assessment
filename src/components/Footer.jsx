@@ -1,12 +1,9 @@
 import { Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
-// 1. Import hook
 import { useLanguage } from "../contexts/LanguageContext";
 
 const Footer = () => {
-  // 2. Get translation object
   const { t } = useLanguage();
 
-  // 3. Map categories to context translations
   const categories = [
     t.categories.items.prod,   // Productivity
     t.categories.items.dev,    // Development
@@ -15,7 +12,6 @@ const Footer = () => {
     t.categories.items.track,  // Trackers
   ];
 
-  // 4. Map company links to context translations
   const company = [
     t.footer.links.home,    // Home
     t.footer.links.about,   // About Us
@@ -59,7 +55,6 @@ const Footer = () => {
               <span className="text-2xl font-bold text-white">Alt F</span>
             </a>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-zinc-400">
-              {/* 5. Dynamic Description */}
               {t.footer.desc}
             </p>
             <div className="flex gap-3">
@@ -79,7 +74,6 @@ const Footer = () => {
           {/* Categories */}
           <div>
             <h4 className="mb-6 text-sm font-semibold uppercase tracking-wider text-white">
-              {/* 6. Dynamic Header */}
               {t.footer.cats}
             </h4>
             <ul className="space-y-3">
@@ -99,7 +93,6 @@ const Footer = () => {
           {/* Company */}
           <div>
             <h4 className="mb-6 text-sm font-semibold uppercase tracking-wider text-white">
-              {/* 7. Dynamic Header */}
               {t.footer.comp}
             </h4>
             <ul className="space-y-3">
@@ -119,7 +112,6 @@ const Footer = () => {
           {/* Contacts */}
           <div>
             <h4 className="mb-6 text-sm font-semibold uppercase tracking-wider text-white">
-              {/* 8. Dynamic Header */}
               {t.footer.contactTitle}
             </h4>
             <ul className="space-y-4 text-sm text-zinc-400">
@@ -143,16 +135,13 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-zinc-900 bg-zinc-950">
         <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 text-sm text-zinc-500 md:flex-row lg:px-8">
-          {/* 9. Dynamic Rights */}
           <p>{t.footer.rights}</p>
           <div className="flex gap-6">
             <a href="#" className="transition-colors hover:text-white">
-              {/* 10. Dynamic Terms */}
               {t.footer.terms}
             </a>
             <span className="text-zinc-700">|</span>
             <a href="#" className="transition-colors hover:text-white">
-              {/* 11. Dynamic Privacy */}
               {t.footer.privacy}
             </a>
           </div>

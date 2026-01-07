@@ -1,17 +1,14 @@
 import { PencilRuler, LockKeyhole, CircleOff, DatabaseZap } from "lucide-react";
-// 1. Import the hook
 import { useLanguage } from "../contexts/LanguageContext";
 import { useTheme } from "../contexts/ThemeContext";
 
 const HeroSection = () => {
-  // 2. Get the translation object
   const { t } = useLanguage();
   const { theme } = useTheme();
 
   const features = [
     {
       icon: PencilRuler,
-      // 3. Replace hardcoded strings with context keys
       title: t.hero.features.tools.title,
       description: t.hero.features.tools.desc,
       style: "bg-[#FA913C] text-white", 
@@ -44,12 +41,10 @@ const HeroSection = () => {
           {/* Left Content */}
           <div className="max-w-xl animate-fade-in-up">
             <h1 className="mb-6 text-[#2563EB] text-4xl font-extrabold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">
-              {/* 4. Use dynamic title parts */}
               {t.hero.titlePart1}{" "}
               <span className="text-primary">{t.hero.titlePart2}</span>
             </h1>
             <p className="mb-8 text-[#9DA3AF] text-xl text-muted-foreground md:text-xl">
-              {/* 5. Use dynamic subtitle */}
               {t.hero.subtitle}
             </p>
             
@@ -79,7 +74,6 @@ const HeroSection = () => {
         </div>
 
         {/* Feature Cards */}
-        {/* Changed to grid-cols-1 (1 per line) by default for thin screens, then 2, then 4 */}
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 transform-gpu">
           {features.map((feature, index) => {
             const Icon = feature.icon;
@@ -99,7 +93,6 @@ const HeroSection = () => {
                   <Icon className="h-6 w-6 block" />
                 </div>
                 
-                {/* Text Wrapper: min-w-0 prevents flex items from overflowing */}
                 <div className="min-w-0 flex-1">
                   <h3 className={`font-semibold truncate ${theme === "dark" ? "text-white" : "text-foreground"}`}>
                     {feature.title}

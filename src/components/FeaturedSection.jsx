@@ -1,11 +1,9 @@
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-// 1. Import hook
 import { useLanguage } from "../contexts/LanguageContext";
 
 const FeaturedSection = () => {
   const scrollRef = useRef(null);
-  // 2. Get translation object
   const { t } = useLanguage();
 
   const tools = [
@@ -35,23 +33,14 @@ const FeaturedSection = () => {
             {/* Left Content */}
             <div className="text-primary-foreground z-10">
               <span className="mb-4 inline-block rounded-full bg-[#B9CFFF63] px-4 py-1 text-sm font-medium backdrop-blur-sm">
-                {/* 3. Use dynamic Badge */}
                 {t.featured.badge}
               </span>
               <h2 className="mb-4 text-3xl font-bold lg:text-4xl">
-                {/* 4. Use dynamic Title */}
                 {t.featured.title}
               </h2>
               <p className="text-lg text-[#E4E6EA]">
-                {/* 5. Use dynamic Subtitle */}
                 {t.featured.subtitle}
               </p>
-              
-              {/* Optional: Add Rating if you want */}
-              {/* <div className="mt-6 flex items-center gap-2 text-sm text-[#E4E6EA]">
-                 <Star className="h-4 w-4 fill-current" />
-                 <span>{t.featured.rating}</span>
-              </div> */}
             </div>
 
             {/* Right Content - Image Carousel */}

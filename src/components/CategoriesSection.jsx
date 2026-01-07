@@ -1,12 +1,9 @@
 import { ArrowUpRight } from "lucide-react";
-// 1. Import hook
 import { useLanguage } from "../contexts/LanguageContext";
 
 const CategoriesSection = () => {
-  // 2. Get translation object
   const { t } = useLanguage();
 
-  // 3. Construct categories using dynamic names from 't'
   const categories = [
     { 
       id: 1, 
@@ -52,15 +49,12 @@ const CategoriesSection = () => {
             {/* Left Content (Text) */}
             <div className="relative z-10">
               <span className="mb-4 inline-block rounded-lg bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
-                {/* 4. Dynamic Badge */}
                 {t.categories.badge}
               </span>
               <h2 className="mb-4 text-3xl font-bold text-white lg:text-4xl">
-                {/* 5. Dynamic Title */}
                 {t.categories.title}
               </h2>
               <p className="max-w-md text-zinc-400">
-                {/* 6. Dynamic Subtitle */}
                 {t.categories.subtitle}
               </p>
             </div>
@@ -103,7 +97,6 @@ const CategoriesSection = () => {
                       {category.name}
                     </h3>
                     <div className="mt-1 flex items-center justify-between">
-                      {/* 7. Dynamic "Tools" label appended to count */}
                       <p className="text-[10px] text-zinc-500">{category.count} {t.nav.tools}</p>
                       <ArrowUpRight className="h-3 w-3 text-zinc-600 group-hover:text-primary transition-colors" />
                     </div>

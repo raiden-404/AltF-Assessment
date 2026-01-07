@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 import SearchModal from "./SearchModel";
-// 1. Import hook
 import { useLanguage } from "../contexts/LanguageContext";
 import { useTheme } from "../contexts/ThemeContext";
 
@@ -9,7 +8,6 @@ import { useTheme } from "../contexts/ThemeContext";
 const BuildSection = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   
-  // 2. Get translation object from Context
   const { t } = useLanguage();
   const { theme } = useTheme();
 
@@ -35,10 +33,6 @@ const BuildSection = () => {
 
   const ToolCard = ({ tool }) => (
     <div className="group relative flex-shrink-0 mx-3 cursor-pointer overflow-hidden rounded-2xl">
-      {/* Fixed Dimensions: 
-         Width: 270px 
-         Height: 220px 
-      */}
       <div className="h-[220px] w-[270px] overflow-hidden rounded-2xl bg-muted shadow-md transition-all duration-300 hover:shadow-xl">
         <img 
           src={tool.image} 
@@ -80,11 +74,9 @@ const BuildSection = () => {
           {/* Header */}
           <div className="mx-auto mb-12 max-w-2xl text-center">
             <h2 className={`${theme === "dark" ? "text-white" : ""} mb-4 text-3xl font-bold text-foreground lg:text-4xl`}>
-              {/* 3. Use Dynamic Title */}
               {t.build.title}
             </h2>
             <p className="mb-8 text-[#9DA3AF] text-xl text-muted-foreground">
-              {/* 4. Use Dynamic Subtitle */}
               {t.build.subtitle}
             </p>
 
@@ -93,7 +85,6 @@ const BuildSection = () => {
               <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
-                // 5. Use Dynamic Placeholder
                 placeholder={t.build.searchPlaceholder}
                 onClick={() => setSearchOpen(true)}
                 readOnly

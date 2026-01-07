@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Search, Menu, X, Languages, Sun, Moon } from "lucide-react";
 import SearchModal from "./SearchModel";
-// 1. Import Language Hook
 import { useLanguage } from "../contexts/LanguageContext";
-// 2. Import Theme Hook
 import { useTheme } from "../contexts/ThemeContext";
 
 const Header = () => {
@@ -11,9 +9,8 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
-  // 3. Get Data from Contexts
   const { t, language, changeLanguage } = useLanguage();
-  const { theme, toggleTheme } = useTheme(); // Get theme ('light' or 'dark') and toggle function
+  const { theme, toggleTheme } = useTheme();
 
   const langMenuRef = useRef(null);
 
@@ -43,8 +40,6 @@ const Header = () => {
     { label: t.nav.about, hasDropdown: false },
   ];
 
-  // 4. Dynamic Styles based on Theme
-  // If dark, use black bg and white text. If light, use white bg and black text.
   const headerClass = theme === 'dark' 
     ? "sticky top-0 z-50 w-full bg-black border-b border-zinc-800 text-white" 
     : "sticky top-0 z-50 w-full bg-white border-b border-gray-200 text-black";
@@ -118,7 +113,7 @@ const Header = () => {
             <div className="relative" ref={langMenuRef}>
               <button 
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                className={`${buttonClass} w-auto px-3`} // Add padding for text
+                className={`${buttonClass} w-auto px-3`}
                 aria-label="Select Language"
               >
                 <Languages className='h-4 w-4' />&nbsp;{currentLangLabel}
@@ -147,11 +142,11 @@ const Header = () => {
 
             {/* Theme Toggle Button */}
             <button
-              onClick={toggleTheme} // 5. Trigger Context Toggle
+              onClick={toggleTheme}
               className={buttonClass}
               aria-label="Toggle Theme"
             >
-              {/* 6. Show Icon based on Context Theme */}
+              {/* Show Icon based on Context Theme */}
               {theme === 'dark' ? (
                 <Sun className="h-4 w-4 text-yellow-400" />
               ) : (
