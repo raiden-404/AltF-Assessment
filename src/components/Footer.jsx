@@ -56,7 +56,7 @@ const Footer = () => {
             </a>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-zinc-400">
               {t.footer.desc}
-            </p>
+            </p> 
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (
                 <a
