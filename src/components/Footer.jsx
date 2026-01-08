@@ -61,7 +61,7 @@ const Footer = () => {
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
-                  href={social.href}
+                  href={social.href} 
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-zinc-400 transition-all duration-300 hover:bg-primary hover:text-white hover:-translate-y-1"
                   aria-label={`Visit our social page`}
                 >
